@@ -199,11 +199,8 @@ function initIntroSequencer() {
       intro.remove();
       document.body.classList.remove('loading');
       canvas && canvas.stop();
-      window.removeEventListener('resize', handleResize);
     }, 900);
   }
-
-  function handleResize() { /* handled inside initIntroCanvas */ }
 
   // Sequence
   const timers = [];
