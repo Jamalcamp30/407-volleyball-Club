@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>407 Volleyball Club — Orlando's Elite Volleyball System</title>
+  <meta name="description" content="407 Volleyball Club. Orlando's elite volleyball development system. 10 Teraflex courts in Ocoee, FL. Energy. Effort. Gratitude.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="loading">
+
+<!-- INTRO OVERLAY -->
+<div id="intro" class="intro-overlay" role="presentation" aria-hidden="true">
+  <canvas id="intro-canvas"></canvas>
+  <!-- Court lines -->
+  <div class="court-lines">
+    <div class="court-line cl-net"></div>
+    <div class="court-line cl-center-v"></div>
+    <div class="court-line cl-attack-left"></div>
+    <div class="court-line cl-attack-right"></div>
+    <div class="court-line cl-end-top"></div>
+    <div class="court-line cl-end-bottom"></div>
+    <div class="court-line cl-side-left"></div>
+    <div class="court-line cl-side-right"></div>
+  </div>
+  <!-- 407 digits -->
+  <div class="intro-digits">
+    <span class="intro-digit" id="d4">4</span>
+    <span class="intro-digit" id="d0">0</span>
+    <span class="intro-digit" id="d7">7</span>
+  </div>
+  <div class="intro-club-name">VOLLEYBALL CLUB</div>
+  <div class="intro-location">LIVE FROM OCOEE, FL</div>
+  <div class="intro-tagline">TUNE INTO THE NEXT LEVEL</div>
+  <div class="intro-scan"></div>
+  <button class="intro-skip" id="intro-skip" aria-label="Skip intro">SKIP ›</button>
+</div>
+
+<!-- NAVIGATION -->
+<nav class="site-nav" id="site-nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo" aria-label="407 Volleyball Club home">
+      <span class="logo-407">407</span><span class="logo-vc">VC</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#athletes">Athletes</a></li>
+      <li><a href="#commitments">Commitments</a></li>
+      <li><a href="#staff">Staff</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn-parent-view" id="btn-parent-view" aria-pressed="false">
+        <span class="parent-icon">◎</span> PARENT VIEW
+      </button>
+      <button class="btn-recruiter" id="btn-recruiter" aria-pressed="false">
+        <span class="recruiter-dot"></span> RECRUITER MODE
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#athletes">Athletes</a></li>
+      <li><a href="#commitments">Commitments</a></li>
+      <li><a href="#staff">Staff</a></li>
+      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-mode-btns">
+      <button class="btn-parent-view mobile" id="btn-parent-view-mobile">◎ PARENT VIEW</button>
+      <button class="btn-recruiter mobile" id="btn-recruiter-mobile">RECRUITER MODE</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-ghost-407" aria-hidden="true">407</div>
+  <div class="hero-scan"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="signal-dot"></span> THE 407 SIGNAL IS LIVE
+    </div>
+    <h1 class="hero-headline">
+      <span class="hero-line reveal-el" data-delay="0">ORLANDO'S</span>
+      <span class="hero-line accent reveal-el" data-delay="120">ELITE VOLLEYBALL</span>
+      <span class="hero-line reveal-el" data-delay="240">SYSTEM</span>
+    </h1>
+    <p class="hero-sub reveal-el" data-delay="360">Train in the code. Play above the noise.<br>Built in Ocoee, FL.</p>
+    <div class="hero-ctas reveal-el" data-delay="480">
+      <a href="#programs" class="btn-primary impact-btn">ENTER THE 407 SYSTEM</a>
+      <a href="#programs" class="btn-ghost">VIEW PROGRAMS</a>
+    </div>
+    <!-- Live modules -->
+    <div class="live-modules reveal-el" data-delay="600">
+      <div class="live-module">
+        <span class="module-dot dot-orange"></span>
+        <div class="module-label">NEXT TRYOUT</div>
+        <div class="module-value">Aug 3, 2025</div>
+        <div class="module-sub">Registration Open</div>
+      </div>
+      <div class="live-module">
+        <span class="module-dot dot-green"></span>
+        <div class="module-label">SUMMER CAMP</div>
+        <div class="module-value">SPOTS OPEN</div>
+        <div class="module-sub">Limited Availability</div>
+      </div>
+      <div class="live-module">
+        <span class="module-dot dot-orange"></span>
+        <div class="module-label">LATEST COMMIT</div>
+        <div class="module-value">BAYLOR</div>
+        <div class="module-sub">17 Orange · May 2025</div>
+      </div>
+      <div class="live-module">
+        <span class="module-dot dot-cyan"></span>
+        <div class="module-label">PRIVATE LESSONS</div>
+        <div class="module-value">AVAILABLE</div>
+        <div class="module-sub">All Positions</div>
+      </div>
+    </div>
+  </div>
+  <!-- Stats bar -->
+  <div class="hero-stats">
+    <div class="stat-item">
+      <span class="stat-num" data-count="10">0</span>
+      <span class="stat-label">TERAFLEX COURTS</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="8">0</span>
+      <span class="stat-label">ELITE COACHES</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="9">0</span>
+      <span class="stat-label">AGE GROUPS</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <span class="stat-num" data-count="8">0</span>
+      <span class="stat-label">COLLEGE COMMITS</span>
+    </div>
+  </div>
+</section>
+
+<!-- CHOOSE YOUR PATH SECTION -->
+<section class="choose-path" id="choose-path" aria-label="Choose your path">
+  <div class="path-lane path-athletes reveal-left">
+    <div class="path-number">01</div>
+    <div class="path-icon">⚡</div>
+    <h2 class="path-title">ATHLETES</h2>
+    <p class="path-sub">Own your identity. Build your game. Get recruited on your terms.</p>
+    <ul class="path-features">
+      <li>Elite skill development</li>
+      <li>Recruiting exposure</li>
+      <li>Athlete passport system</li>
+      <li>Film &amp; measurables</li>
+    </ul>
+    <a href="#programs" class="btn-path impact-btn">ENTER THE 407 SYSTEM →</a>
+    <div class="speed-lines" aria-hidden="true"></div>
+  </div>
+  <div class="path-lane path-parents reveal-el" data-delay="150">
+    <div class="path-number">02</div>
+    <div class="path-icon">🛡</div>
+    <h2 class="path-title">PARENTS</h2>
+    <p class="path-sub">Clarity. Confidence. Every question answered, every step organized.</p>
+    <ul class="path-features">
+      <li>Clear cost breakdowns</li>
+      <li>Tryout &amp; schedule info</li>
+      <li>Communication portal</li>
+      <li>Recruiting guidance</li>
+    </ul>
+    <button class="btn-path btn-path-parent impact-btn" id="btn-path-parent">SEE THE PATH CLEARLY →</button>
+  </div>
+  <div class="path-lane path-recruiters reveal-right">
+    <div class="path-number">03</div>
+    <div class="path-icon">◆</div>
+    <h2 class="path-title">RECRUITERS</h2>
+    <p class="path-sub">Full database. Live film. Verified measurables. The 407 feed is open.</p>
+    <ul class="path-features">
+      <li>Athlete database access</li>
+      <li>Film &amp; highlight reels</li>
+      <li>Verified measurables</li>
+      <li>Direct contact info</li>
+    </ul>
+    <button class="btn-path btn-path-recruiter impact-btn" id="btn-path-recruiter">OPEN RECRUITER MODE →</button>
+    <div class="recruiter-grid-overlay" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- PROGRAMS SECTION -->
+<section class="programs" id="programs" aria-label="Programs">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">WHAT WE OFFER</div>
+    <h2 class="section-title">PROGRAMS</h2>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card reveal-el" data-delay="0">
+      <div class="program-number">01</div>
+      <div class="program-accent"></div>
+      <h3 class="program-name">MINI CLUB</h3>
+      <div class="program-age">Ages 8–12</div>
+      <p class="program-desc">Foundational skills in a high-energy, small-group environment. Where love for the game begins.</p>
+      <div class="program-tags">
+        <span class="tag">Small Groups</span>
+        <span class="tag">Fundamentals</span>
+        <span class="tag">Fun First</span>
+      </div>
+      <a href="#contact" class="btn-program impact-btn">LEARN MORE</a>
+    </div>
+    <div class="program-card reveal-el" data-delay="100">
+      <div class="program-number">02</div>
+      <div class="program-accent"></div>
+      <h3 class="program-name">PRIVATE LESSONS</h3>
+      <div class="program-age">All Ages</div>
+      <p class="program-desc">Position-specific, one-on-one coaching with elite-level staff. Flexible scheduling built around your season.</p>
+      <div class="program-tags">
+        <span class="tag">1-on-1</span>
+        <span class="tag">All Positions</span>
+        <span class="tag">Flexible</span>
+      </div>
+      <a href="#contact" class="btn-program impact-btn">BOOK NOW</a>
+    </div>
+    <div class="program-card reveal-el" data-delay="200">
+      <div class="program-number">03</div>
+      <div class="program-accent"></div>
+      <h3 class="program-name">SUMMER CAMPS</h3>
+      <div class="program-age">Ages 10–18</div>
+      <p class="program-desc">Specialty tracks. Intensive reps. Elite coaching. Limited spots to keep the level high.</p>
+      <div class="program-tags">
+        <span class="tag">Position Tracks</span>
+        <span class="tag">Limited Spots</span>
+        <span class="tag">Elite Staff</span>
+      </div>
+      <a href="#contact" class="btn-program impact-btn">REGISTER</a>
+    </div>
+    <div class="program-card program-card-wide reveal-el" data-delay="300">
+      <div class="program-number">04</div>
+      <div class="program-accent"></div>
+      <h3 class="program-name">CLUB VOLLEYBALL</h3>
+      <div class="program-age">10U – 18U</div>
+      <p class="program-desc">The full 407 system. Competitive travel teams across nine age groups, from developmental to nationally competitive.</p>
+      <div class="team-ladder">
+        <span class="team-tag team-18">18 Orange</span>
+        <span class="team-tag team-17">17 Orange</span>
+        <span class="team-tag team-17b">17 Blue</span>
+        <span class="team-tag team-16">16 Orange</span>
+        <span class="team-tag team-16b">16 Blue</span>
+        <span class="team-tag team-16w">16 White</span>
+        <span class="team-tag team-15">15 Orange</span>
+        <span class="team-tag team-15b">15 Blue</span>
+        <span class="team-tag team-15w">15 White</span>
+        <span class="team-tag team-14">14 Orange</span>
+        <span class="team-tag team-14w">14 White</span>
+      </div>
+      <a href="#contact" class="btn-program impact-btn">TRY OUT</a>
+    </div>
+  </div>
+</section>
+
+<!-- FLIGHT PATH SECTION -->
+<section class="flight-path" id="schedule" aria-label="407 Flight Path">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">THE JOURNEY</div>
+    <h2 class="section-title">407 FLIGHT PATH</h2>
+    <p class="section-sub">Six stages. One destination.</p>
+  </div>
+  <div class="flight-path-track" id="flight-path-track">
+    <div class="track-line"><div class="track-fill"></div></div>
+    <div class="flight-stages">
+      <div class="flight-stage reveal-el" data-delay="0">
+        <div class="stage-node"><span>1</span></div>
+        <div class="stage-content">
+          <div class="stage-name">ENTRY</div>
+          <div class="stage-desc">First contact, evaluation, placement</div>
+        </div>
+      </div>
+      <div class="flight-stage reveal-el" data-delay="100">
+        <div class="stage-node"><span>2</span></div>
+        <div class="stage-content">
+          <div class="stage-name">FOUNDATIONS</div>
+          <div class="stage-desc">Lessons &amp; Mini Club development</div>
+        </div>
+      </div>
+      <div class="flight-stage reveal-el" data-delay="200">
+        <div class="stage-node"><span>3</span></div>
+        <div class="stage-content">
+          <div class="stage-name">TEAM PLACEMENT</div>
+          <div class="stage-desc">Competitive team assignment</div>
+        </div>
+      </div>
+      <div class="flight-stage reveal-el" data-delay="300">
+        <div class="stage-node"><span>4</span></div>
+        <div class="stage-content">
+          <div class="stage-name">ELITE TRACK</div>
+          <div class="stage-desc">Tournaments &amp; advanced training</div>
+        </div>
+      </div>
+      <div class="flight-stage reveal-el" data-delay="400">
+        <div class="stage-node"><span>5</span></div>
+        <div class="stage-content">
+          <div class="stage-name">RECRUITING PREP</div>
+          <div class="stage-desc">Passport, film, coach connections</div>
+        </div>
+      </div>
+      <div class="flight-stage flight-stage-final reveal-el" data-delay="500">
+        <div class="stage-node stage-node-final"><span>6</span></div>
+        <div class="stage-content">
+          <div class="stage-name">NEXT LEVEL</div>
+          <div class="stage-desc">College commitment</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATHLETES / PASSPORT SECTION -->
+<section class="athletes" id="athletes" aria-label="Athlete passports">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">THE ROSTER</div>
+    <h2 class="section-title">ATHLETE PASSPORTS</h2>
+    <p class="section-sub">The 407 system. Built athlete by athlete.</p>
+  </div>
+  <!-- Recruiter filter bar -->
+  <div class="recruiter-filter-bar" id="recruiter-filter-bar" aria-hidden="true">
+    <span class="filter-label">FILTER:</span>
+    <button class="filter-btn active" data-filter="all">ALL</button>
+    <button class="filter-btn" data-filter="setter">SETTER</button>
+    <button class="filter-btn" data-filter="outside">OUTSIDE</button>
+    <button class="filter-btn" data-filter="libero">LIBERO</button>
+    <button class="filter-btn" data-filter="middle">MIDDLE</button>
+    <button class="filter-btn" data-filter="opposite">OPPOSITE</button>
+  </div>
+  <div class="athletes-grid">
+    <div class="athlete-card reveal-el" data-delay="0" data-pos="setter">
+      <div class="card-scan"></div>
+      <div class="card-corners"></div>
+      <div class="athlete-portrait" style="--portrait-bg:#7B2FBE">
+        <span class="athlete-initials">AJ</span>
+        <span class="jersey-num">8</span>
+      </div>
+      <div class="position-badge badge-setter">SETTER</div>
+      <div class="athlete-info">
+        <div class="athlete-name">ALEXIS JOHNSON</div>
+        <div class="athlete-meta">Class 2026 · 17 Orange</div>
+        <div class="athlete-stats">
+          <div class="stat-row"><span>HT</span><span>5'10"</span></div>
+          <div class="stat-row"><span>REACH</span><span>7'4"</span></div>
+          <div class="stat-bar-wrap"><div class="stat-bar" style="--pct:88%"></div></div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag tag-film">📹 Film Available</span>
+        <span class="card-tag">17 Orange</span>
+      </div>
+      <div class="card-overlay">
+        <a href="#contact" class="btn-passport">VIEW PASSPORT →</a>
+      </div>
+    </div>
+    <div class="athlete-card reveal-el" data-delay="100" data-pos="outside">
+      <div class="card-scan"></div>
+      <div class="card-corners"></div>
+      <div class="athlete-portrait" style="--portrait-bg:#C0392B">
+        <span class="athlete-initials">MT</span>
+        <span class="jersey-num">14</span>
+      </div>
+      <div class="position-badge badge-outside">OUTSIDE</div>
+      <div class="athlete-info">
+        <div class="athlete-name">MAYA THOMPSON</div>
+        <div class="athlete-meta">Class 2026 · 17 Blue</div>
+        <div class="athlete-stats">
+          <div class="stat-row"><span>HT</span><span>6'0"</span></div>
+          <div class="stat-row"><span>REACH</span><span>7'8"</span></div>
+          <div class="stat-bar-wrap"><div class="stat-bar" style="--pct:91%"></div></div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag tag-film tag-live">🔴 LIVE FILM</span>
+        <span class="card-tag">17 Blue</span>
+      </div>
+      <div class="card-overlay">
+        <a href="#contact" class="btn-passport">VIEW PASSPORT →</a>
+      </div>
+    </div>
+    <div class="athlete-card reveal-el" data-delay="200" data-pos="libero">
+      <div class="card-scan"></div>
+      <div class="card-corners"></div>
+      <div class="athlete-portrait" style="--portrait-bg:#1A78C2">
+        <span class="athlete-initials">SK</span>
+        <span class="jersey-num">1</span>
+      </div>
+      <div class="position-badge badge-libero">LIBERO</div>
+      <div class="athlete-info">
+        <div class="athlete-name">SARA KENNEDY</div>
+        <div class="athlete-meta">Class 2027 · 16 Orange</div>
+        <div class="athlete-stats">
+          <div class="stat-row"><span>HT</span><span>5'6"</span></div>
+          <div class="stat-row"><span>DIG%</span><span>94%</span></div>
+          <div class="stat-bar-wrap"><div class="stat-bar" style="--pct:94%"></div></div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag tag-film">📹 Film Available</span>
+        <span class="card-tag">16 Orange</span>
+      </div>
+      <div class="card-overlay">
+        <a href="#contact" class="btn-passport">VIEW PASSPORT →</a>
+      </div>
+    </div>
+    <div class="athlete-card reveal-el athlete-committed" data-delay="300" data-pos="middle">
+      <div class="card-scan"></div>
+      <div class="card-corners"></div>
+      <div class="committed-label">COMMITTED · BAYLOR</div>
+      <div class="athlete-portrait" style="--portrait-bg:#1E7E34">
+        <span class="athlete-initials">JW</span>
+        <span class="jersey-num">3</span>
+      </div>
+      <div class="position-badge badge-middle">MIDDLE</div>
+      <div class="athlete-info">
+        <div class="athlete-name">JADE WILLIAMS</div>
+        <div class="athlete-meta">Class 2025 · 18 Orange</div>
+        <div class="athlete-stats">
+          <div class="stat-row"><span>HT</span><span>6'2"</span></div>
+          <div class="stat-row"><span>BLOCK</span><span>9'8"</span></div>
+          <div class="stat-bar-wrap"><div class="stat-bar" style="--pct:96%"></div></div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag tag-film tag-live">🔴 LIVE FILM</span>
+        <span class="card-tag">18 Orange</span>
+      </div>
+      <div class="card-overlay">
+        <a href="#contact" class="btn-passport">VIEW PASSPORT →</a>
+      </div>
+    </div>
+    <div class="athlete-card reveal-el" data-delay="400" data-pos="opposite">
+      <div class="card-scan"></div>
+      <div class="card-corners"></div>
+      <div class="athlete-portrait" style="--portrait-bg:#E67E22">
+        <span class="athlete-initials">RL</span>
+        <span class="jersey-num">17</span>
+      </div>
+      <div class="position-badge badge-opposite">OPPOSITE</div>
+      <div class="athlete-info">
+        <div class="athlete-name">RILEY LOPEZ</div>
+        <div class="athlete-meta">Class 2026 · 17 Orange</div>
+        <div class="athlete-stats">
+          <div class="stat-row"><span>HT</span><span>6'1"</span></div>
+          <div class="stat-row"><span>ATK%</span><span>52%</span></div>
+          <div class="stat-bar-wrap"><div class="stat-bar" style="--pct:82%"></div></div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag tag-film">📹 Film Available</span>
+        <span class="card-tag">17 Orange</span>
+      </div>
+      <div class="card-overlay">
+        <a href="#contact" class="btn-passport">VIEW PASSPORT →</a>
+      </div>
+    </div>
+    <div class="athlete-card reveal-el" data-delay="500" data-pos="setter">
+      <div class="card-scan"></div>
+      <div class="card-corners"></div>
+      <div class="athlete-portrait" style="--portrait-bg:#7B2FBE">
+        <span class="athlete-initials">KM</span>
+        <span class="jersey-num">5</span>
+      </div>
+      <div class="position-badge badge-setter">SETTER</div>
+      <div class="athlete-info">
+        <div class="athlete-name">KAYLA MARTIN</div>
+        <div class="athlete-meta">Class 2027 · 16 Blue</div>
+        <div class="athlete-stats">
+          <div class="stat-row"><span>HT</span><span>5'9"</span></div>
+          <div class="stat-row"><span>SET%</span><span>97%</span></div>
+          <div class="stat-bar-wrap"><div class="stat-bar" style="--pct:85%"></div></div>
+        </div>
+      </div>
+      <div class="card-tags">
+        <span class="card-tag tag-film">📹 Film Available</span>
+        <span class="card-tag">16 Blue</span>
+      </div>
+      <div class="card-overlay">
+        <a href="#contact" class="btn-passport">VIEW PASSPORT →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMMITMENT WALL -->
+<section class="commitments" id="commitments" aria-label="College commitments">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">WHERE THEY'RE GOING</div>
+    <h2 class="section-title">COMMITMENT WALL</h2>
+    <p class="section-sub">
+      <span class="total-num" data-count="8">0</span> COLLEGE PLACEMENTS AND COUNTING
+    </p>
+  </div>
+  <div class="commitments-grid">
+    <div class="commit-card reveal-el" data-delay="0" style="--school-color:#003878">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">BAYLOR</div>
+      <div class="commit-div">NCAA DI</div>
+      <div class="commit-team">18 Orange</div>
+      <div class="commit-story">Built in the 407. Headed to Waco, TX.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="80" style="--school-color:#8B0000">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">COKER</div>
+      <div class="commit-div">NCAA DII</div>
+      <div class="commit-team">17 Orange</div>
+      <div class="commit-story">From 407 courts to Hartsville, SC.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="160" style="--school-color:#1A4785">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">WASHINGTON &amp; LEE</div>
+      <div class="commit-div">NCAA DIII</div>
+      <div class="commit-team">17 Blue</div>
+      <div class="commit-story">The 407 signal reaches Lexington, VA.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="240" style="--school-color:#C8102E">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">DENISON</div>
+      <div class="commit-div">NCAA DIII</div>
+      <div class="commit-team">16 Orange</div>
+      <div class="commit-story">407 trained. Denison bound.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="320" style="--school-color:#003C8B">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">CUMBERLAND</div>
+      <div class="commit-div">NAIA</div>
+      <div class="commit-team">16 Blue</div>
+      <div class="commit-story">From Ocoee courts to Lebanon, TN.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="400" style="--school-color:#006B3F">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">JOHNSON &amp; WALES</div>
+      <div class="commit-div">NCAA DIII</div>
+      <div class="commit-team">15 White</div>
+      <div class="commit-story">The 407 frequency. Heard in Providence.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="480" style="--school-color:#5B2D8E">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">PENSACOLA CHRISTIAN</div>
+      <div class="commit-div">NCCAA</div>
+      <div class="commit-team">15 Orange</div>
+      <div class="commit-story">407 built. Pensacola bound.</div>
+    </div>
+    <div class="commit-card reveal-el" data-delay="560" style="--school-color:#003D7C">
+      <div class="commit-stamp">COMMITTED</div>
+      <div class="commit-school">BAPTIST UNIVERSITY FL</div>
+      <div class="commit-div">NCCAA</div>
+      <div class="commit-team">14 White</div>
+      <div class="commit-story">The 407 path reaches Graceville.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CLUB PULSE / SEASON TIMELINE -->
+<section class="club-pulse" id="club-pulse" aria-label="Season timeline">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">THE RHYTHM</div>
+    <h2 class="section-title">CLUB PULSE</h2>
+    <p class="section-sub">The season, mapped.</p>
+  </div>
+  <div class="pulse-timeline reveal-el" id="pulse-timeline">
+    <div class="pulse-track">
+      <div class="pulse-fill"></div>
+      <div class="pulse-event pe-club" style="--start:0%;--width:33%" title="Club Season Jan–Apr">
+        <span class="pe-label">CLUB SEASON</span>
+      </div>
+      <div class="pulse-event pe-recruiting" style="--start:8%;--width:25%" title="Recruiting Window">
+        <span class="pe-label">RECRUITING</span>
+      </div>
+      <div class="pulse-event pe-nationals" style="--start:35%" title="Nationals May">
+        <span class="pe-dot pe-dot-nationals"></span>
+        <span class="pe-label">NATIONALS</span>
+      </div>
+      <div class="pulse-event pe-summer" style="--start:42%;--width:25%" title="Summer Camps">
+        <span class="pe-label">SUMMER CAMPS</span>
+      </div>
+      <div class="pulse-event pe-tryouts" style="--start:58%" title="Tryouts Aug">
+        <span class="pe-dot pe-dot-tryouts"></span>
+        <span class="pe-label">TRYOUTS</span>
+      </div>
+      <div class="pulse-event pe-preseason" style="--start:67%;--width:25%" title="Pre-Season Sep–Nov">
+        <span class="pe-label">PRE-SEASON</span>
+      </div>
+    </div>
+    <div class="pulse-months">
+      <span>JAN</span><span>FEB</span><span>MAR</span><span>APR</span>
+      <span>MAY</span><span>JUN</span><span>JUL</span><span>AUG</span>
+      <span>SEP</span><span>OCT</span><span>NOV</span><span>DEC</span>
+    </div>
+  </div>
+  <div class="pulse-legend reveal-el" data-delay="200">
+    <span class="legend-item"><span class="legend-dot ld-orange"></span>Club Season</span>
+    <span class="legend-item"><span class="legend-dot ld-cyan"></span>Recruiting Window</span>
+    <span class="legend-item"><span class="legend-dot ld-bright"></span>Nationals</span>
+    <span class="legend-item"><span class="legend-dot ld-summer"></span>Summer Camps</span>
+    <span class="legend-item"><span class="legend-dot ld-tryouts"></span>Tryouts</span>
+  </div>
+</section>
+
+<!-- POSITION LABS -->
+<section class="position-labs" id="position-labs" aria-label="Position labs">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">TRAIN YOUR CRAFT</div>
+    <h2 class="section-title">POSITION LABS</h2>
+  </div>
+  <div class="labs-grid">
+    <div class="lab-card lab-setter reveal-el" data-delay="0">
+      <div class="lab-bg-letter">S</div>
+      <div class="lab-num">S1</div>
+      <h3 class="lab-name">SETTER</h3>
+      <ul class="lab-focus">
+        <li>Hand Mechanics</li>
+        <li>Footwork Patterns</li>
+        <li>Decision Speed</li>
+      </ul>
+      <a href="#contact" class="btn-lab impact-btn">LAB →</a>
+    </div>
+    <div class="lab-card lab-pin reveal-el" data-delay="80">
+      <div class="lab-bg-letter">P</div>
+      <div class="lab-num">P2</div>
+      <h3 class="lab-name">OUTSIDE / PIN</h3>
+      <ul class="lab-focus">
+        <li>Approach Arc</li>
+        <li>Arm Swing Mechanics</li>
+        <li>Serve Receive</li>
+      </ul>
+      <a href="#contact" class="btn-lab impact-btn">LAB →</a>
+    </div>
+    <div class="lab-card lab-libero reveal-el" data-delay="160">
+      <div class="lab-bg-letter">L</div>
+      <div class="lab-num">L3</div>
+      <h3 class="lab-name">LIBERO</h3>
+      <ul class="lab-focus">
+        <li>Platform Angle</li>
+        <li>Court Reading</li>
+        <li>Emergency Defense</li>
+      </ul>
+      <a href="#contact" class="btn-lab impact-btn">LAB →</a>
+    </div>
+    <div class="lab-card lab-middle reveal-el" data-delay="240">
+      <div class="lab-bg-letter">M</div>
+      <div class="lab-num">M4</div>
+      <h3 class="lab-name">MIDDLE</h3>
+      <ul class="lab-focus">
+        <li>Block Timing</li>
+        <li>Transition Speed</li>
+        <li>Quick Attack</li>
+      </ul>
+      <a href="#contact" class="btn-lab impact-btn">LAB →</a>
+    </div>
+    <div class="lab-card lab-opposite reveal-el" data-delay="320">
+      <div class="lab-bg-letter">O</div>
+      <div class="lab-num">O5</div>
+      <h3 class="lab-name">OPPOSITE</h3>
+      <ul class="lab-focus">
+        <li>Right-Side Angle</li>
+        <li>Back Row Attack</li>
+        <li>RS Blocking</li>
+      </ul>
+      <a href="#contact" class="btn-lab impact-btn">LAB →</a>
+    </div>
+  </div>
+</section>
+
+<!-- COACHES SECTION -->
+<section class="coaches" id="staff" aria-label="Coaching staff">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">THE STAFF</div>
+    <h2 class="section-title">LEADERSHIP</h2>
+  </div>
+  <div class="coaches-grid">
+    <div class="coach-card reveal-left">
+      <div class="coach-portrait">TC</div>
+      <div class="coach-info">
+        <div class="coach-name">TREY COLE</div>
+        <div class="coach-title">Recruiting Director</div>
+        <div class="coach-creds">
+          <span class="cred-badge">Pepperdine</span>
+          <span class="cred-badge">Texas</span>
+          <span class="cred-badge">USA WNT</span>
+        </div>
+        <p class="coach-bio">Led at the Pepperdine program level before contributing to USA Women's National Team systems. Coach Cole brings elite recruiting intelligence and national team standards to the 407 development model.</p>
+        <blockquote class="coach-quote">"The standard is the standard. We build players who are ready before they get there."</blockquote>
+      </div>
+    </div>
+    <div class="coach-net-divider" aria-hidden="true"></div>
+    <div class="coach-card reveal-right">
+      <div class="coach-portrait">MM</div>
+      <div class="coach-info">
+        <div class="coach-name">MATTI McKISSOCK-OLIVER</div>
+        <div class="coach-title">Director</div>
+        <div class="coach-creds">
+          <span class="cred-badge">Georgia Tech</span>
+          <span class="cred-badge">UCLA</span>
+          <span class="cred-badge">AVCA All-American</span>
+        </div>
+        <p class="coach-bio">Program-record assists at Georgia Tech, AVCA All-American recognition, ACC excellence, and a playing career that continued at UCLA. Matti founded the 407 system to bring that level of coaching home to Central Florida.</p>
+        <blockquote class="coach-quote">"Energy. Effort. Gratitude. That's the 407 way."</blockquote>
+      </div>
+    </div>
+  </div>
+  <div class="staff-stats reveal-el" data-delay="300">
+    <div class="staff-stat"><span class="ss-num">8</span><span class="ss-label">TOTAL STAFF</span></div>
+    <div class="staff-stat"><span class="ss-num">1</span><span class="ss-label">NCAA DI BACKGROUND</span></div>
+    <div class="staff-stat"><span class="ss-num">USA</span><span class="ss-label">NATIONAL TEAM EXP.</span></div>
+  </div>
+</section>
+
+<!-- PARENT ESSENTIALS (parent mode only) -->
+<section class="parent-essentials" id="parent-essentials" aria-label="Parent essentials" aria-hidden="true">
+  <div class="section-header">
+    <div class="section-eyebrow">FOR PARENTS</div>
+    <h2 class="section-title">EVERYTHING YOU NEED TO KNOW</h2>
+  </div>
+  <div class="parent-grid">
+    <div class="parent-card">
+      <div class="parent-card-icon">📅</div>
+      <h3>Tryout Dates</h3>
+      <p>August 3, 2025 and upcoming fall evaluations. All age groups evaluated by position coaches.</p>
+      <a href="#contact" class="btn-parent-cta">GET DETAILS</a>
+    </div>
+    <div class="parent-card">
+      <div class="parent-card-icon">👧</div>
+      <h3>Age Groups</h3>
+      <p>We offer programs from 8U through 18U. Nine competitive age groups, Mini Club through 18 Orange.</p>
+      <a href="#programs" class="btn-parent-cta">SEE GROUPS</a>
+    </div>
+    <div class="parent-card">
+      <div class="parent-card-icon">💰</div>
+      <h3>Fees &amp; Travel</h3>
+      <p>Transparent season fees, tournament travel details, and multi-athlete family options available.</p>
+      <a href="#contact" class="btn-parent-cta">ASK US</a>
+    </div>
+    <div class="parent-card">
+      <div class="parent-card-icon">❓</div>
+      <h3>FAQs</h3>
+      <p>Everything from practice schedules and uniforms to the recruiting process — answered clearly.</p>
+      <a href="#contact" class="btn-parent-cta">READ FAQs</a>
+    </div>
+  </div>
+  <div class="parent-phrase">Energy. Effort. Gratitude. — <strong>#WeGetTo</strong></div>
+</section>
+
+<!-- FACILITY SECTION -->
+<section class="facility" id="facility" aria-label="Facility">
+  <div class="facility-content">
+    <div class="facility-text reveal-left">
+      <div class="section-eyebrow">THE ARENA</div>
+      <h2 class="facility-title">10 TERAFLEX COURTS</h2>
+      <div class="facility-sub">OCOEE, FLORIDA</div>
+      <div class="facility-stats">
+        <div class="fac-stat"><span class="fac-num">10</span><span class="fac-label">Teraflex Courts</span></div>
+        <div class="fac-stat"><span class="fac-num">407</span><span class="fac-label">Area Code</span></div>
+        <div class="fac-stat"><span class="fac-num">CTL</span><span class="fac-label">Central FL Hub</span></div>
+      </div>
+      <a href="https://maps.google.com/?q=Ocoee,+FL" target="_blank" rel="noopener noreferrer" class="btn-ghost">GET DIRECTIONS →</a>
+    </div>
+    <div class="facility-courts reveal-right" id="court-grid" aria-label="10 court grid visualization">
+      <div class="court-block" style="--i:0"></div>
+      <div class="court-block" style="--i:1"></div>
+      <div class="court-block" style="--i:2"></div>
+      <div class="court-block" style="--i:3"></div>
+      <div class="court-block" style="--i:4"></div>
+      <div class="court-block" style="--i:5"></div>
+      <div class="court-block" style="--i:6"></div>
+      <div class="court-block" style="--i:7"></div>
+      <div class="court-block" style="--i:8"></div>
+      <div class="court-block" style="--i:9"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact" aria-label="Contact">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">CONNECT</div>
+    <h2 class="section-title">GET IN THE SYSTEM</h2>
+  </div>
+  <div class="contact-grid">
+    <a href="https://407volleyballclub.com" target="_blank" rel="noopener noreferrer" class="contact-card reveal-el" data-delay="0">
+      <div class="contact-icon">🌐</div>
+      <div class="contact-label">TRYOUT INFO</div>
+      <div class="contact-value">407volleyballclub.com</div>
+    </a>
+    <a href="https://instagram.com/407volleyballclub" target="_blank" rel="noopener noreferrer" class="contact-card reveal-el" data-delay="100">
+      <div class="contact-icon">📸</div>
+      <div class="contact-label">INSTAGRAM</div>
+      <div class="contact-value">@407volleyballclub</div>
+    </a>
+    <a href="https://sportsrecruits.com/organization/407volleyballclub" target="_blank" rel="noopener noreferrer" class="contact-card reveal-el" data-delay="200">
+      <div class="contact-icon">📊</div>
+      <div class="contact-label">SPORTSRECRUITS</div>
+      <div class="contact-value">View Athlete Profiles</div>
+    </a>
+    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="contact-card reveal-el" data-delay="300">
+      <div class="contact-icon">📘</div>
+      <div class="contact-label">FACEBOOK</div>
+      <div class="contact-value">407 Volleyball Club</div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-ghost" aria-hidden="true">407</div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo"><span class="logo-407">407</span><span class="logo-vc">VC</span></div>
+      <div class="footer-signal">THE 407 SIGNAL</div>
+      <p class="footer-tagline">Orlando's elite volleyball system.<br>Built in Ocoee. Felt everywhere.</p>
+      <div class="footer-socials">
+        <a href="https://instagram.com/407volleyballclub" target="_blank" rel="noopener noreferrer" aria-label="Instagram">IG</a>
+        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">FB</a>
+      </div>
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <div class="footer-col">
+        <div class="footer-col-title">Programs</div>
+        <a href="#programs">Mini Club</a>
+        <a href="#programs">Private Lessons</a>
+        <a href="#programs">Summer Camps</a>
+        <a href="#programs">Club Volleyball</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Athletes</div>
+        <a href="#athletes">Athlete Passports</a>
+        <a href="#athletes">Position Labs</a>
+        <a href="#commitments">Commitments</a>
+        <a href="#schedule">Flight Path</a>
+      </div>
+      <div class="footer-col">
+        <div class="footer-col-title">Parents</div>
+        <a href="#contact">Tryout Info</a>
+        <a href="#programs">Age Groups</a>
+        <a href="#contact">Fees &amp; Travel</a>
+        <a href="#contact">FAQs</a>
+      </div>
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-location">Ocoee, Florida · 10 Teraflex Courts</div>
+    <div class="footer-copy">© 2025 407 Volleyball Club</div>
+    <div class="footer-culture">Energy. Effort. Gratitude. #WeGetTo</div>
+  </div>
+</footer>
+
+<!-- MOBILE CTA BAR -->
+<div class="mobile-cta-bar" aria-label="Mobile register button">
+  <a href="#contact" class="btn-mobile-register impact-btn">REGISTER NOW</a>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
