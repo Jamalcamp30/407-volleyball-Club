@@ -1944,6 +1944,212 @@ body.recruiter-mode .recruiter-filter-bar {
   display: inline;
 }
 
+/* Enriched commit card (athlete photo / quote / story link) */
+.commit-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--school-color, var(--accent)), rgba(0,0,0,0.4));
+  border: 2px solid var(--school-color, var(--accent));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 12px;
+  box-shadow: 0 0 18px rgba(0,0,0,0.4);
+}
+
+.commit-athlete {
+  margin: 8px 0 6px;
+}
+
+.commit-athlete-name {
+  font-family: var(--font-display);
+  font-size: 16px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  line-height: 1.15;
+}
+
+.commit-athlete-meta {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  margin-top: 2px;
+}
+
+.commit-quote {
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--muted);
+  border-left: 2px solid var(--school-color, var(--accent));
+  padding: 4px 0 4px 10px;
+  margin: 10px 0;
+  font-style: italic;
+}
+
+.commit-story-link {
+  display: inline-block;
+  margin-top: 10px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  color: var(--school-color, var(--accent));
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.commit-story-link:hover,
+.commit-story-link:focus-visible {
+  border-bottom-color: var(--school-color, var(--accent));
+}
+
+/* ============================================
+   TOURNAMENT SCHEDULE
+   ============================================ */
+.tournaments {
+  background: var(--bg2);
+  padding: var(--section-pad) 24px;
+}
+
+.tournaments-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.tournament-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  padding: 20px 22px;
+  position: relative;
+  border-radius: 4px;
+  transition: transform 0.3s var(--ease-smooth), box-shadow 0.3s, border-color 0.3s;
+}
+
+.tournament-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 20px var(--accent-glow);
+}
+
+.tournament-card.tournament-past {
+  opacity: 0.55;
+  border-left-color: var(--dim);
+}
+
+.tournament-date {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.tournament-card.tournament-past .tournament-date {
+  color: var(--dim);
+}
+
+.tournament-name {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  letter-spacing: 0.03em;
+  color: var(--white);
+  line-height: 1.15;
+  margin-bottom: 8px;
+}
+
+a.tournament-name {
+  transition: color 0.2s;
+}
+
+a.tournament-name:hover,
+a.tournament-name:focus-visible {
+  color: var(--accent);
+}
+
+.tournament-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.tournament-location::before { content: '📍 '; opacity: 0.7; }
+.tournament-division {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--dim);
+  text-transform: uppercase;
+}
+
+.tournament-teams {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.tournament-team-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  padding: 3px 8px;
+  border: 1px solid rgba(255,107,0,0.35);
+  background: rgba(255,107,0,0.08);
+  color: var(--accent);
+  border-radius: 2px;
+}
+
+.tournaments-empty {
+  grid-column: 1 / -1;
+  max-width: 640px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 40px 24px;
+  border: 1px dashed var(--border);
+  border-radius: 6px;
+  background: var(--bg-card);
+}
+
+.tournaments-empty-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.tournaments-empty p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.tournaments-empty a {
+  color: var(--accent);
+  border-bottom: 1px solid var(--accent);
+}
+
+@media (max-width: 640px) {
+  .tournaments-grid { grid-template-columns: 1fr; }
+}
+
 /* ============================================
    CLUB PULSE
    ============================================ */
