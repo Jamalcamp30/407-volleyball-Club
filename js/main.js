@@ -4,6 +4,42 @@
 
 'use strict';
 
+// ─── 0. Data ─────────────────────────────────────────────
+// Commitment Wall. Each entry renders a card in #commitments-grid.
+// Optional per-athlete fields (athleteName, initials, quote, storyUrl)
+// render the enriched "recruiting magnet" card; omit them to show the
+// original compact card.
+const commits = [
+  {
+    school: 'BAYLOR',
+    schoolColor: '#003878',
+    division: 'NCAA DI',
+    team: '18 Orange',
+    story: 'Built in the 407. Headed to Waco, TX.',
+    athleteName: 'Jade Williams',
+    initials: 'JW',
+    position: 'Middle',
+    classYear: '2025',
+    quote: 'The 407 system built the player I am today. Sic \u2019em.'
+  },
+  { school: 'COKER',              schoolColor: '#8B0000', division: 'NCAA DII',  team: '17 Orange', story: 'From 407 courts to Hartsville, SC.' },
+  { school: 'WASHINGTON & LEE',   schoolColor: '#1A4785', division: 'NCAA DIII', team: '17 Blue',   story: 'The 407 signal reaches Lexington, VA.' },
+  { school: 'DENISON',            schoolColor: '#C8102E', division: 'NCAA DIII', team: '16 Orange', story: '407 trained. Denison bound.' },
+  { school: 'CUMBERLAND',         schoolColor: '#003C8B', division: 'NAIA',      team: '16 Blue',   story: 'From Ocoee courts to Lebanon, TN.' },
+  { school: 'JOHNSON & WALES',    schoolColor: '#006B3F', division: 'NCAA DIII', team: '15 White',  story: 'The 407 frequency. Heard in Providence.' },
+  { school: 'PENSACOLA CHRISTIAN', schoolColor: '#5B2D8E', division: 'NCCAA',    team: '15 Orange', story: '407 built. Pensacola bound.' },
+  { school: 'BAPTIST UNIVERSITY FL', schoolColor: '#003D7C', division: 'NCCAA', team: '14 White',  story: 'The 407 path reaches Graceville.' }
+];
+
+// Tournament schedule. Populate with real events to fill #tournaments-grid.
+// Shape: { name, date (ISO yyyy-mm-dd or 'yyyy-mm-dd/yyyy-mm-dd'), location, teams: [string], division, link? }
+// When empty, a graceful empty state is rendered instead of fabricated dates.
+const tournaments = [
+  // Example:
+  // { name: 'AAU Sunshine Regional', date: '2026-02-14/2026-02-15', location: 'Orlando, FL',
+  //   teams: ['17 Orange', '16 Orange'], division: 'Club', link: 'https://example.com' }
+];
+
 // ─── 1. IntroCanvas ──────────────────────────────────────
 class SeamLine {
   constructor(canvas) {
@@ -182,23 +218,38 @@ function initIntroCanvas() {
 function initIntroSequencer() {
   const intro = document.getElementById('intro');
   const skipBtn = document.getElementById('intro-skip');
-  if (!intro) return;
+
+  function fireIntroDone() {
+    document.dispatchEvent(new CustomEvent('407:intro-done'));
+  }
+
+  if (!intro) {
+    // No overlay in DOM — treat as already done.
+    document.body.classList.remove('loading');
+    fireIntroDone();
+    return;
+  }
 
   // Respect reduced motion preference — skip immediately
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     intro.remove();
     document.body.classList.remove('loading');
+    fireIntroDone();
     return;
   }
 
   const canvas = initIntroCanvas();
+  let introDone = false;
 
   function completeIntro() {
+    if (introDone) return;
+    introDone = true;
     intro.classList.add('phase-exit');
     setTimeout(() => {
       intro.remove();
       document.body.classList.remove('loading');
       canvas && canvas.stop();
+      fireIntroDone();
     }, 900);
   }
 
