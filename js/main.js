@@ -823,7 +823,7 @@ function initTournaments() {
 
   grid.innerHTML = rows.map(({ t, parsed }, i) => {
     const delay = i * 80;
-    const dateLabel = formatTournamentDate(parsed) || escapeHtml(t.date || 'TBD');
+    const dateLabel = escapeHtml(formatTournamentDate(parsed) || t.date || 'TBD');
     const isPast = parsed && parsed.start < today && (!parsed.end || parsed.end < today);
     const teams = Array.isArray(t.teams) && t.teams.length
       ? `<div class="tournament-teams">${t.teams.map(team => `<span class="tournament-team-tag">${escapeHtml(team)}</span>`).join('')}</div>`
@@ -834,7 +834,7 @@ function initTournaments() {
 
     return `
       <div class="tournament-card reveal-el${isPast ? ' tournament-past' : ''}" data-delay="${delay}">
-        <div class="tournament-date">${escapeHtml(dateLabel)}</div>
+        <div class="tournament-date">${dateLabel}</div>
         ${name}
         <div class="tournament-meta">
           ${t.location ? `<span class="tournament-location">${escapeHtml(t.location)}</span>` : ''}
