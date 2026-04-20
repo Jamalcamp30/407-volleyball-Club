@@ -4,6 +4,42 @@
 
 'use strict';
 
+// ─── 0. Data ─────────────────────────────────────────────
+// Commitment Wall. Each entry renders a card in #commitments-grid.
+// Optional per-athlete fields (athleteName, initials, quote, storyUrl)
+// render the enriched "recruiting magnet" card; omit them to show the
+// original compact card.
+const commits = [
+  {
+    school: 'BAYLOR',
+    schoolColor: '#003878',
+    division: 'NCAA DI',
+    team: '18 Orange',
+    story: 'Built in the 407. Headed to Waco, TX.',
+    athleteName: 'Jade Williams',
+    initials: 'JW',
+    position: 'Middle',
+    classYear: '2025',
+    quote: 'The 407 system built the player I am today. Sic \u2019em.'
+  },
+  { school: 'COKER',              schoolColor: '#8B0000', division: 'NCAA DII',  team: '17 Orange', story: 'From 407 courts to Hartsville, SC.' },
+  { school: 'WASHINGTON & LEE',   schoolColor: '#1A4785', division: 'NCAA DIII', team: '17 Blue',   story: 'The 407 signal reaches Lexington, VA.' },
+  { school: 'DENISON',            schoolColor: '#C8102E', division: 'NCAA DIII', team: '16 Orange', story: '407 trained. Denison bound.' },
+  { school: 'CUMBERLAND',         schoolColor: '#003C8B', division: 'NAIA',      team: '16 Blue',   story: 'From Ocoee courts to Lebanon, TN.' },
+  { school: 'JOHNSON & WALES',    schoolColor: '#006B3F', division: 'NCAA DIII', team: '15 White',  story: 'The 407 frequency. Heard in Providence.' },
+  { school: 'PENSACOLA CHRISTIAN', schoolColor: '#5B2D8E', division: 'NCCAA',    team: '15 Orange', story: '407 built. Pensacola bound.' },
+  { school: 'BAPTIST UNIVERSITY FL', schoolColor: '#003D7C', division: 'NCCAA', team: '14 White',  story: 'The 407 path reaches Graceville.' }
+];
+
+// Tournament schedule. Populate with real events to fill #tournaments-grid.
+// Shape: { name, date (ISO yyyy-mm-dd or 'yyyy-mm-dd/yyyy-mm-dd'), location, teams: [string], division, link? }
+// When empty, a graceful empty state is rendered instead of fabricated dates.
+const tournaments = [
+  // Example:
+  // { name: 'AAU Sunshine Regional', date: '2026-02-14/2026-02-15', location: 'Orlando, FL',
+  //   teams: ['17 Orange', '16 Orange'], division: 'Club', link: 'https://example.com' }
+];
+
 // ─── 1. IntroCanvas ──────────────────────────────────────
 class SeamLine {
   constructor(canvas) {
@@ -182,23 +218,38 @@ function initIntroCanvas() {
 function initIntroSequencer() {
   const intro = document.getElementById('intro');
   const skipBtn = document.getElementById('intro-skip');
-  if (!intro) return;
+
+  function fireIntroDone() {
+    document.dispatchEvent(new CustomEvent('407:intro-done'));
+  }
+
+  if (!intro) {
+    // No overlay in DOM — treat as already done.
+    document.body.classList.remove('loading');
+    fireIntroDone();
+    return;
+  }
 
   // Respect reduced motion preference — skip immediately
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     intro.remove();
     document.body.classList.remove('loading');
+    fireIntroDone();
     return;
   }
 
   const canvas = initIntroCanvas();
+  let introDone = false;
 
   function completeIntro() {
+    if (introDone) return;
+    introDone = true;
     intro.classList.add('phase-exit');
     setTimeout(() => {
       intro.remove();
       document.body.classList.remove('loading');
       canvas && canvas.stop();
+      fireIntroDone();
     }, 900);
   }
 
@@ -279,7 +330,14 @@ function countUp(el, target, duration) {
 }
 
 function initCountUp() {
-  if (!('IntersectionObserver' in window)) return;
+  if (!('IntersectionObserver' in window)) {
+    // Fallback: just render final values so they aren't stuck at "0".
+    document.querySelectorAll('[data-count]').forEach(el => {
+      const target = parseInt(el.dataset.count, 10);
+      if (!isNaN(target)) el.textContent = target;
+    });
+    return;
+  }
 
   const targets = document.querySelectorAll('[data-count]');
   if (!targets.length) return;
@@ -293,9 +351,27 @@ function initCountUp() {
       countUp(el, target, 1500);
       observer.unobserve(el);
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.1 });
 
-  targets.forEach(el => observer.observe(el));
+  // Defer observation until the intro overlay is out of the way so the
+  // tween is visible to the user rather than completing behind the
+  // overlay. If the intro is already done (no overlay / reduced motion),
+  // observe immediately.
+  function observeAll() {
+    targets.forEach(el => observer.observe(el));
+  }
+  // If the intro overlay is still on the page, defer the tween until it
+  // exits so users actually see the count-up. Otherwise (reduced motion
+  // path already removed the overlay synchronously, or it never existed),
+  // start immediately.
+  if (document.getElementById('intro')) {
+    document.addEventListener('407:intro-done', observeAll, { once: true });
+    // Safety net: if for some reason the event never fires, start after a
+    // generous timeout so counters never stay stuck at 0.
+    setTimeout(observeAll, 7000);
+  } else {
+    observeAll();
+  }
 }
 
 // ─── 5. HeroParallax ─────────────────────────────────────
@@ -637,8 +713,146 @@ function initActiveNav() {
   sections.forEach(s => observer.observe(s));
 }
 
+// ─── 15. Commitments (data-driven) ───────────────────────
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function initCommitments() {
+  const grid = document.getElementById('commitments-grid');
+  if (!grid || !Array.isArray(commits)) return;
+
+  grid.innerHTML = commits.map((c, i) => {
+    const delay = i * 80;
+    const schoolColor = c.schoolColor || '#FF6B00';
+    const enriched = c.athleteName || c.quote || c.storyUrl || c.initials;
+
+    const photo = c.initials
+      ? `<div class="commit-photo" aria-hidden="true"><span>${escapeHtml(c.initials)}</span></div>`
+      : '';
+
+    const athlete = c.athleteName
+      ? `<div class="commit-athlete">
+           <div class="commit-athlete-name">${escapeHtml(c.athleteName)}</div>
+           <div class="commit-athlete-meta">${escapeHtml([c.position, c.classYear && `Class ${c.classYear}`].filter(Boolean).join(' \u00b7 '))}</div>
+         </div>`
+      : '';
+
+    const quote = c.quote
+      ? `<blockquote class="commit-quote">${escapeHtml(c.quote)}</blockquote>`
+      : '';
+
+    const storyLink = c.storyUrl
+      ? `<a class="commit-story-link" href="${escapeHtml(c.storyUrl)}">Read her story →</a>`
+      : '';
+
+    return `
+      <div class="commit-card reveal-el${enriched ? ' commit-card-enriched' : ''}" data-delay="${delay}" style="--school-color:${escapeHtml(schoolColor)}">
+        <div class="commit-stamp">COMMITTED</div>
+        ${photo}
+        <div class="commit-school">${escapeHtml(c.school || '')}</div>
+        <div class="commit-div">${escapeHtml(c.division || '')}</div>
+        <div class="commit-team">${escapeHtml(c.team || '')}</div>
+        ${athlete}
+        ${quote}
+        ${c.story ? `<div class="commit-story">${escapeHtml(c.story)}</div>` : ''}
+        ${storyLink}
+      </div>
+    `;
+  }).join('');
+
+  // Update total counter data-count to reflect actual list length.
+  const total = document.querySelector('.total-num[data-count]');
+  if (total) total.setAttribute('data-count', String(commits.length));
+}
+
+// ─── 16. Tournament Schedule (data-driven) ───────────────
+const MONTHS_SHORT = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+
+function parseTournamentDate(dateStr) {
+  if (!dateStr) return null;
+  const [startStr, endStr] = String(dateStr).split('/');
+  const start = new Date(startStr + 'T00:00:00');
+  if (isNaN(start.getTime())) return null;
+  const end = endStr ? new Date(endStr + 'T00:00:00') : null;
+  return { start, end: end && !isNaN(end.getTime()) ? end : null };
+}
+
+function formatTournamentDate(parsed) {
+  if (!parsed) return '';
+  const { start, end } = parsed;
+  const sMonth = MONTHS_SHORT[start.getMonth()];
+  const sDay = start.getDate();
+  const year = start.getFullYear();
+  if (!end) return `${sMonth} ${sDay}, ${year}`;
+  if (start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear()) {
+    return `${sMonth} ${sDay}\u2013${end.getDate()}, ${year}`;
+  }
+  return `${sMonth} ${sDay} \u2013 ${MONTHS_SHORT[end.getMonth()]} ${end.getDate()}, ${year}`;
+}
+
+function initTournaments() {
+  const grid = document.getElementById('tournaments-grid');
+  if (!grid || !Array.isArray(tournaments)) return;
+
+  if (tournaments.length === 0) {
+    grid.innerHTML = `
+      <div class="tournaments-empty">
+        <div class="tournaments-empty-eyebrow">SCHEDULE DROPS SOON</div>
+        <p>The 407 tournament schedule is being finalized. Check back shortly \u2014 or <a href="#contact">get on the tryout list</a> and we'll send it straight to you.</p>
+      </div>
+    `;
+    return;
+  }
+
+  // Sort chronologically; undated entries sink to the bottom.
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const rows = tournaments
+    .map(t => ({ t, parsed: parseTournamentDate(t.date) }))
+    .sort((a, b) => {
+      if (!a.parsed) return 1;
+      if (!b.parsed) return -1;
+      return a.parsed.start - b.parsed.start;
+    });
+
+  grid.innerHTML = rows.map(({ t, parsed }, i) => {
+    const delay = i * 80;
+    const dateLabel = escapeHtml(formatTournamentDate(parsed) || t.date || 'TBD');
+    const isPast = parsed && parsed.start < today && (!parsed.end || parsed.end < today);
+    const teams = Array.isArray(t.teams) && t.teams.length
+      ? `<div class="tournament-teams">${t.teams.map(team => `<span class="tournament-team-tag">${escapeHtml(team)}</span>`).join('')}</div>`
+      : '';
+    const name = t.link
+      ? `<a class="tournament-name" href="${escapeHtml(t.link)}" target="_blank" rel="noopener noreferrer">${escapeHtml(t.name || '')}</a>`
+      : `<div class="tournament-name">${escapeHtml(t.name || '')}</div>`;
+
+    return `
+      <div class="tournament-card reveal-el${isPast ? ' tournament-past' : ''}" data-delay="${delay}">
+        <div class="tournament-date">${dateLabel}</div>
+        ${name}
+        <div class="tournament-meta">
+          ${t.location ? `<span class="tournament-location">${escapeHtml(t.location)}</span>` : ''}
+          ${t.division ? `<span class="tournament-division">${escapeHtml(t.division)}</span>` : ''}
+        </div>
+        ${teams}
+      </div>
+    `;
+  }).join('');
+}
+
 // ─── Initialize All ──────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  // Render data-driven sections first so the scroll/reveal/count observers
+  // pick up the freshly inserted nodes.
+  initCommitments();
+  initTournaments();
+
   initIntroSequencer();
   initNavScroll();
   initMobileMenu();

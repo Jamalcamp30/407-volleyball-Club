@@ -50,7 +50,7 @@
       <li><a href="#athletes">Athletes</a></li>
       <li><a href="#commitments">Commitments</a></li>
       <li><a href="#staff">Staff</a></li>
-      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#tournaments">Schedule</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="nav-actions">
@@ -72,7 +72,7 @@
       <li><a href="#athletes">Athletes</a></li>
       <li><a href="#commitments">Commitments</a></li>
       <li><a href="#staff">Staff</a></li>
-      <li><a href="#schedule">Schedule</a></li>
+      <li><a href="#tournaments">Schedule</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <div class="mobile-mode-btns">
@@ -505,63 +505,20 @@
       <span class="total-num" data-count="8">0</span> COLLEGE PLACEMENTS AND COUNTING
     </p>
   </div>
-  <div class="commitments-grid">
-    <div class="commit-card reveal-el" data-delay="0" style="--school-color:#003878">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">BAYLOR</div>
-      <div class="commit-div">NCAA DI</div>
-      <div class="commit-team">18 Orange</div>
-      <div class="commit-story">Built in the 407. Headed to Waco, TX.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="80" style="--school-color:#8B0000">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">COKER</div>
-      <div class="commit-div">NCAA DII</div>
-      <div class="commit-team">17 Orange</div>
-      <div class="commit-story">From 407 courts to Hartsville, SC.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="160" style="--school-color:#1A4785">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">WASHINGTON &amp; LEE</div>
-      <div class="commit-div">NCAA DIII</div>
-      <div class="commit-team">17 Blue</div>
-      <div class="commit-story">The 407 signal reaches Lexington, VA.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="240" style="--school-color:#C8102E">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">DENISON</div>
-      <div class="commit-div">NCAA DIII</div>
-      <div class="commit-team">16 Orange</div>
-      <div class="commit-story">407 trained. Denison bound.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="320" style="--school-color:#003C8B">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">CUMBERLAND</div>
-      <div class="commit-div">NAIA</div>
-      <div class="commit-team">16 Blue</div>
-      <div class="commit-story">From Ocoee courts to Lebanon, TN.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="400" style="--school-color:#006B3F">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">JOHNSON &amp; WALES</div>
-      <div class="commit-div">NCAA DIII</div>
-      <div class="commit-team">15 White</div>
-      <div class="commit-story">The 407 frequency. Heard in Providence.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="480" style="--school-color:#5B2D8E">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">PENSACOLA CHRISTIAN</div>
-      <div class="commit-div">NCCAA</div>
-      <div class="commit-team">15 Orange</div>
-      <div class="commit-story">407 built. Pensacola bound.</div>
-    </div>
-    <div class="commit-card reveal-el" data-delay="560" style="--school-color:#003D7C">
-      <div class="commit-stamp">COMMITTED</div>
-      <div class="commit-school">BAPTIST UNIVERSITY FL</div>
-      <div class="commit-div">NCCAA</div>
-      <div class="commit-team">14 White</div>
-      <div class="commit-story">The 407 path reaches Graceville.</div>
-    </div>
+  <div class="commitments-grid" id="commitments-grid">
+    <!-- Cards rendered by initCommitments() in js/main.js -->
+  </div>
+</section>
+
+<!-- TOURNAMENT SCHEDULE -->
+<section class="tournaments" id="tournaments" aria-label="Tournament schedule">
+  <div class="section-header reveal-el">
+    <div class="section-eyebrow">ON THE CALENDAR</div>
+    <h2 class="section-title">TOURNAMENT SCHEDULE</h2>
+    <p class="section-sub">Where the 407 teams are competing next.</p>
+  </div>
+  <div class="tournaments-grid" id="tournaments-grid" aria-live="polite">
+    <!-- Cards rendered by initTournaments() in js/main.js -->
   </div>
 </section>
 
